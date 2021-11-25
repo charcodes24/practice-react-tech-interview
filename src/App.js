@@ -4,6 +4,9 @@ import './App.css';
 
 function App() {
   const [input, setInput] = useState('')
+  const [count, setCount] = useState(0)
+
+  const clearedInput = ''
 
   function handleInput(e) {
     setInput(e.target.value)
@@ -11,11 +14,19 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    setInput("");
-    let container = document.getElementById('tags')
+    setInput(clearedInput);
+    let container = document.getElementById('tag-container')
     let tag = document.createElement('button')
     tag.innerHTML = input
+    tag.className = "tag"
     container.appendChild(tag)
+    setCount(count+1)
+  }
+
+  function handleClear() {
+    let allTags = document.querySelectorAll('.tag')
+    allTags.forEach(tag => tag.remove())
+    setCount(0)
   }
 
 
@@ -24,10 +35,9 @@ function App() {
       <form onSubmit={handleSubmit}>
         <input onChange={handleInput} type="text" />
       </form>
-      <div id="tags">
-
-      </div>
-      <button>Clear</button>
+      <div id="tag-container"></div>
+      <div id="count">{count} tags created</div>
+      <button onClick={handleClear}>Clear</button>
     </div>
   );
 }

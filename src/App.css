@@ -10,6 +10,11 @@ input {
 }
 
 button {
+  margin: .5rem;
   padding: .75rem;
   border-radius: 7px;
+}
+
+#count {
+  margin: 2rem;
 }
