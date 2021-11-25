@@ -6,15 +6,13 @@ function App() {
   const [input, setInput] = useState('')
   const [count, setCount] = useState(0)
 
-  const clearedInput = ''
-
   function handleInput(e) {
     setInput(e.target.value)
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    setInput(clearedInput);
+    setInput('');
     let container = document.getElementById('tag-container')
     let tag = document.createElement('button')
     tag.innerHTML = input
@@ -33,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <input onChange={handleInput} type="text" />
+        <input onChange={handleInput} type="text" value={input}/>
       </form>
       <div id="tag-container"></div>
       <div id="count">{count} tags created</div>
